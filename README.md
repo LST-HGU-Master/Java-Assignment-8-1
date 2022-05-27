@@ -27,25 +27,25 @@ public class Matango
 ```java
 public class Prog81 {
 
-	public static void main(String[] args) {
-		int hp = Integer.parseInt(args[0]);
+    public static void main(String[] args) {
+        int hp = Integer.parseInt(args[0]);
 
-		Hero h = new Hero();
-		h.name = "ミナト";
-		h.hp = 100;
-		Matango mA = new Matango();
-		mA.suffix = 'A';
-		mA.hp = 100;
-		Matango mB = new Matango();
-		mB.suffix = 'B';
-		mB.hp = 100;
+        Hero h = new Hero();
+        h.name = "ミナト";
+        h.hp = 100;
+        Matango mA = new Matango();
+        mA.suffix = 'A';
+        mA.hp = 100;
+        Matango mB = new Matango();
+        mB.suffix = 'B';
+        mB.hp = 100;
         
         // ここにプログラム追加
 
-		System.out.println("勇者のHP: " + h.hp);
-		System.out.println("お化けキノコAのHP: " + mA.hp);
-		System.out.println("お化けキノコBのHP: " + mB.hp);
-	}
+        System.out.println("勇者のHP: " + h.hp);
+        System.out.println("お化けキノコAのHP: " + mA.hp);
+        System.out.println("お化けキノコBのHP: " + mB.hp);
+    }
 
 }
 ```

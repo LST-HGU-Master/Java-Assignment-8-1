@@ -29,7 +29,7 @@ public class HeroTest {
         // assertion
         try {
             assertEquals(130, m.hp,
-                "Hero.attack()後のmatangoインスタンスのhpが不正です!");
+                "Hero.attack(Matango )後のmatangoインスタンスのhpが不正です!");
         } catch (AssertionError err) {
             System.setOut(originalOut);
             throw err;
@@ -58,7 +58,7 @@ public class HeroTest {
         // assertion
         String[] prints = bos.toString().split("\r\n|\n");
         try {
-            assertEquals("勇者コータローはお化けキノコXを攻撃した!", prints[0]);
+            assertEquals("勇者コータローはお化けキノコXを攻撃した!", prints[0],"Hero.attack(Matango )のprint出力が実行例と異なります!");
         } catch (AssertionError err) {
             System.setOut(originalOut);
             throw err;

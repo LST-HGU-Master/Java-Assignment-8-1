@@ -1,39 +1,43 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 import java.io.*;
-
+/**
+ * @version (20220527)
+ **/
 public class Prog81Test {
 
     @Test
     public void testHelloWorld()
     {
         PrintStream originalOut = System.out;
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bos));
-
+        ByteArrayOutputStream bos;
         StandardInputStream in = new StandardInputStream();
         System.setIn(in);
 
         // action
         // Hello.main(new String[]{"1", "2", "3"}); // 実行時引数をテストする場合
-        Prog81.main(new String[]{"190"});
+        int[] hpData = {190,200};
 
-        // assertion
-        String[] prints = bos.toString().split("\n");
-        assertEquals("勇者のHP: 170", prints[prints.length - 3]);
-        assertEquals("お化けキノコAのHP: 170", prints[prints.length - 2]);
-        assertEquals("お化けキノコBのHP: 170", prints[prints.length - 1]);
+        for(int hp: hpData){
+            bos = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(bos));
+            Prog81.main(new String[]{String.valueOf(hp)});
 
-        //action
-        bos = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bos));
-        Prog81.main(new String[]{"200"});
-
-        // assertion
-        prints = bos.toString().split("\n");
-        assertEquals("勇者のHP: 180", prints[prints.length - 3]);
-        assertEquals("お化けキノコAのHP: 180", prints[prints.length - 2]);
-        assertEquals("お化けキノコBのHP: 180", prints[prints.length - 1]);
+            // assertion
+            String[] prints = bos.toString().split("\r\n|\n");
+            try {
+                assertEquals("勇者のHP: " + (hp-20), prints[prints.length - 3],"main()での処理による勇者のHPの変化が予定通りでありません!");
+                assertEquals("お化けキノコAのHP: " + (hp-20), prints[prints.length - 2],"main()での処理によるおばけキノコAのHPの変化が予定通りでありません!");
+                assertEquals("お化けキノコBのHP: " + (hp-20), prints[prints.length - 1],"main()での処理によるおばけキノコBのHPの変化が予定通りでありません!");
+            } catch (AssertionError err) {
+                System.setOut(originalOut);
+                throw err;
+            } catch (ArrayIndexOutOfBoundsException excpt) {
+                System.setOut(originalOut);
+                fail("Prog81.main()のprint出力に改行が３つ分ありません!");
+            }
+        }
 
         // undo the binding in System
         System.setOut(originalOut);

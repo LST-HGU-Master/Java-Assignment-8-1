@@ -28,7 +28,7 @@ public class MatangoTest {
 
         // assertion
         try {
-            assertEquals(30, h.hp);
+            assertEquals(30, h.hp,"Matango.attack(Hero )後のHeroインスタンスのhpが不正です!");
         } catch (AssertionError err) {
             System.setOut(originalOut);
             throw err;
@@ -57,7 +57,7 @@ public class MatangoTest {
         // assertion
         String[] prints = bos.toString().split("\r\n|\n");
         try {
-            assertEquals("お化けキノコZは勇者コータローを攻撃した!", prints[0]);
+            assertEquals("お化けキノコZは勇者コータローを攻撃した!", prints[0],"Matango.attack(Hero )のprint出力が実行例と異なります!");
         } catch (AssertionError err) {
             System.setOut(originalOut);
             throw err;

@@ -1,7 +1,12 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.io.*;
-
+/**
+ * @version (20220527)
+ * 
+ * (注意) Matangoクラス内に attack(Hero hr) が
+ * 　　　　宣言されるまで、このテストクラスはエラーが表示される
+ **/
 public class MatangoTest {
 
     @Test
@@ -22,9 +27,13 @@ public class MatangoTest {
         m.attack(h);
 
         // assertion
-        assertEquals(30, h.hp);
-
-        // undo the binding in System
+        try {
+            assertEquals(30, h.hp);
+        } catch (AssertionError err) {
+            System.setOut(originalOut);
+            throw err;
+        }
+         // undo the binding in System
         System.setOut(originalOut);
     }
 
@@ -46,8 +55,14 @@ public class MatangoTest {
         m.attack(h);
 
         // assertion
-        assertEquals("お化けキノコZは勇者コータローを攻撃した!\n", bos.toString());
-
+        String[] prints = bos.toString().split("\r\n|\n");
+        try {
+            assertEquals("お化けキノコZは勇者コータローを攻撃した!", prints[0]);
+        } catch (AssertionError err) {
+            System.setOut(originalOut);
+            throw err;
+        }
+ 
         // undo the binding in System
         System.setOut(originalOut);
     }

@@ -32,13 +32,13 @@ public class Prog81 {
 
         Hero h = new Hero();
         h.name = "ミナト";
-        h.hp = 100;
+        h.hp = hp;
         Matango mA = new Matango();
         mA.suffix = 'A';
-        mA.hp = 100;
+        mA.hp = hp;
         Matango mB = new Matango();
         mB.suffix = 'B';
-        mB.hp = 100;
+        mB.hp = hp;
         
         // ここにプログラム追加
 

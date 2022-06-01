@@ -23,7 +23,7 @@ public class Matango
 }
 ```
 
-- Prog81.javaの雛形
+- Prog81クラスの雛形
 ```java
 public class Prog81 {
 

@@ -13,6 +13,8 @@ public class Prog81 {
         mB.suffix = 'B';
         mB.hp = hp;
 
+        // ここにプログラム追加
+        
         System.out.println("勇者のHP: " + h.hp);
         System.out.println("お化けキノコAのHP: " + mA.hp);
         System.out.println("お化けキノコBのHP: " + mB.hp);

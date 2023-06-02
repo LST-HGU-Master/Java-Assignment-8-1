@@ -51,7 +51,7 @@ public class MatangoTest {
         System.setOut(originalOut);
         // assertion
         String[] prints = bos.toString().split("\r\n|\n",-1);
-        assertEquals("お化けキノコZは勇者コータローを攻撃した!", prints[0],"Matango.attack(Hero )のprint出力が実行例と異なります!");
+        assertEquals("お化けキノコZは勇者コータローを攻撃した！", prints[0],"Matango.attack(Hero )のprint出力が実行例と異なります!");
         assertEquals(2, prints.length, "Hero.attack(Matango )のprint出力で改行が２つ以上あります!");
     }
 }

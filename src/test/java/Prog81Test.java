@@ -5,31 +5,21 @@ import org.junit.jupiter.api.AfterEach;
 import java.io.*;
 /**
  * @version (20220606)
- * @version (20261028) revised for lifecycle management, method renaming, full line validation, and index safety
+ * @version (20261028) revised for lifecycle management, method renaming, full line validation, and standard JDK only
  **/
 public class Prog81Test {
-    InputStream originalIn;
-    PrintStream originalOut;
-    ByteArrayOutputStream bos;
-    StandardInputStream in;
+    private PrintStream originalOut;
 
     @BeforeEach
     void before() {
-        // back up binding
-        originalIn  = System.in;
+        // 標準出力（System.out）のバックアップ
         originalOut = System.out;
-        // modify binding
-        bos = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(bos));
-
-        in = new StandardInputStream();
-        System.setIn(in);
     }
 
     @AfterEach
     void after() {
+        // 標準出力の復元
         System.setOut(originalOut);
-        System.setIn(originalIn);
     }
 
     @Test
@@ -38,15 +28,11 @@ public class Prog81Test {
         int[] hpData = {190,200};
 
         for(int hp: hpData){
-            bos = new ByteArrayOutputStream();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
             System.setOut(new PrintStream(bos));
             
             Prog81.main(new String[]{String.valueOf(hp)});
  
-            System.setOut(originalOut);
-            
-            Prog81.main(new String[]{ String.valueOf(hp) });
-
             String rawOutput = bos.toString().replace("\r\n", "\n");
 
             assertTrue(rawOutput.endsWith("\n"), 

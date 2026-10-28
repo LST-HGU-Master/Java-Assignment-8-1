@@ -5,34 +5,27 @@ import org.junit.jupiter.api.AfterEach;
 import java.io.*;
 /**
  * @version (20220606)
- * @version (20261028) revised for lifecycle management, strict trailing newline, and extra line validation
+ * @version (20261028) revised for lifecycle management, explicit trailing newline validation, and standard JDK only
  * 
  * (注意) Matangoクラス内に attack(Hero hr) が
  * 　　　　宣言されるまで、このテストクラスはエラーが表示される
  **/
 public class MatangoTest {
-    InputStream originalIn;
-    PrintStream originalOut;
-    ByteArrayOutputStream bos;
-    StandardInputStream in;
+    private PrintStream originalOut;
+    private ByteArrayOutputStream bos;
 
     @BeforeEach
     void before() {
-        // back up binding
-        originalIn  = System.in;
+        // 標準出力（System.out）のバックアップとリダイレクト
         originalOut = System.out;
-        // modify binding
         bos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bos));
-
-        in = new StandardInputStream();
-        System.setIn(in);
     }
 
     @AfterEach
     void after() {
+        // 標準出力の復元
         System.setOut(originalOut);
-        System.setIn(originalIn);
     }
 
     @Test
